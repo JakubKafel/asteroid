@@ -4,6 +4,7 @@
 import pygame
 from constants import *
 from player import *
+from circleshape import CircleShape
 
 def main():
     print("Starting asteroids!")
@@ -13,9 +14,19 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0 
+    #group creation
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+
+    
+
     player_start_x = SCREEN_WIDTH/2
     player_start_y = SCREEN_HEIGHT/2
+    Player.containers = (drawables, updatables)
     player = Player(player_start_x, player_start_y)
+    
+    
+    print(updatables)
 
 #main game loop
     while(True):
@@ -26,11 +37,10 @@ def main():
             
         screen.fill('black')
 
-        #drawing player
-        player.update(dt)
-        player.draw(screen)
-
-
+        #drawing groups
+        updatables.update(dt)
+        for obj in drawables:
+            obj.draw(screen)
 
         pygame.display.flip()
 
