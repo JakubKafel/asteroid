@@ -15,7 +15,7 @@ def main():
     dt = 0 
     player_start_x = SCREEN_WIDTH/2
     player_start_y = SCREEN_HEIGHT/2
-    player = Player(player_start_x, player_start_y,PLAYER_RADIUS)
+    player = Player(player_start_x, player_start_y)
 
 #main game loop
     while(True):
@@ -26,6 +26,8 @@ def main():
             
         screen.fill('black')
 
+        #drawing player
+        player.update(dt)
         player.draw(screen)
 
 
