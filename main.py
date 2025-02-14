@@ -44,16 +44,18 @@ def main():
 
         #drawing groups
         updatables.update(dt)
+        
         for obj in drawables:
             obj.draw(screen)
+       
 
+        pygame.display.flip()
+
+        #collision check
         for obj in asteroids:
             if player.detectcollision(obj):
                 print("Game over!")
                 return
-
-        pygame.display.flip()
-
     #FPS limit = 60
         dt = clock.tick(60)/1000
 
